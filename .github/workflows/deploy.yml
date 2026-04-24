@@ -1,21 +1,16 @@
-name: Deploy
+name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy to server
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: shalini
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            cd /var/www/html
-            git pull origin main
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Verify CI
+        run: echo "CI is working 🚀"
