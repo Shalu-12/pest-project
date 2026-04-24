@@ -1,4 +1,4 @@
-name: CI/CD Deploy
+name: Deploy
 
 on:
   push:
@@ -10,22 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      
-
-      - name: Build project
-        run: npm run build
-
-      - name: Deploy to Apache
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.HOST }}
-          username: shalini
-          password: ${{ secrets.PASSWORD }}
-          source: "dist/*"
-          target: "/var/www/html/"
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
         with:
